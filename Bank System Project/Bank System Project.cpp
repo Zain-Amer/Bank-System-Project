@@ -4,11 +4,8 @@
 #include "Employe.h"
 using namespace std;
 
-class Client {
+class Client:public Person {
 protected:
-	int id;
-	string name;
-	string pass;
 	double bala;
 public:
 	Client() {
@@ -16,10 +13,10 @@ public:
 		this->bala = 0;
 	}
 
-	Client(int id, string name, string pass, double bala) {
+	Client(int id, string name, string pass, double bala) : Person(id, name, password) {
 		this->id = id;
 		this->name = name;
-		this->pass = pass;
+		this->password = password;
 		this->bala = bala;
 	}
 
@@ -30,8 +27,8 @@ public:
 		}
 	}
 
-	void setPassword(string pass) {
-		if (!regex_match(pass, regex("^//S{8,20}$"))) {
+	void setPassword(string password) {
+		if (!regex_match(password, regex("^//S{8,20}$"))) {
 			throw invalid_argument("Password must be 8-20 chars without spaces!");
 		}
 	}
@@ -47,7 +44,7 @@ public:
 	
 	string getName() { return name; }
 	
-	string getPassword() { return pass; }
+	string getPassword() { return password; }
 
 	double getBalance() { return bala; }
 
@@ -93,7 +90,7 @@ public:
 	void input() {
 		cout << "Enter ID: "; cin >> id;
 		cout << "Enter Name: "; cin >> name;
-		cout << "Enter Password: "; cin >> pass;
+		cout << "Enter Password: "; cin >> password;
 		cout << "Enter Balance: "; cin >> bala;
 	}
 
